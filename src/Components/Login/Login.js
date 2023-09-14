@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
 import Logo from '../../olx-logo.png';
 import './Login.css';
-import { firebaseContext } from '../../store/FirebaseContext';
-import {useHistory} from 'react-router-dom'
+import { firebaseContext } from '../../store/Context';
+import {useNavigate} from 'react-router-dom'
 
 function Login() {
-  const history=useHistory()
+  const navigate=useNavigate()
   const {firebase}=useContext(firebaseContext)
   const [email,setEmail]=useState('')
   const [password,setPassword]=useState('')
@@ -13,16 +13,11 @@ function Login() {
     e.preventDefault()
     firebase.auth().signInWithEmailAndPassword(email,password)
       .then((userCredential) => {
-        // Signed in 
-        const uid = userCredential.user.uid;
-        history.push('/')
-        firebase.firestore().collection('users').doc(uid).get().then((snap)=>{
-          console.log(snap.data())
-         })
+        // Signed in ;
+        navigate('/')
         // ...
       })
       .catch((error) => {
-        const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorMessage)
       });
