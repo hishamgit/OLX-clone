@@ -19,7 +19,7 @@ useEffect(()=>{
     })
     setProducts(allPost)
   })
-})
+},[])
   return (
     <div className="postParentDiv">
       <div className="moreView">

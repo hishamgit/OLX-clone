@@ -12,6 +12,7 @@ const Create = () => {
   const [price,setPrice]=useState('')
   const [image,setImage]=useState('')
   const date=new Date()
+  
   const handleSubmit=()=>{
     firebase.storage().ref(`/image/${image.name}`).put(image).then(({ref})=>{     //name available in image.name 
       ref.getDownloadURL().then((url)=>{

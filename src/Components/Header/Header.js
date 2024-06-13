@@ -39,10 +39,10 @@ function Header() {
           <Arrow></Arrow>
         </div>
         <div className="loginPage">
-          <span>{user ? `Welcome ${user.displayName}` :'Login'}</span>
+          <span  onClick={()=>navigate('/login')}>{user ? `Welcome ${user.displayName}` :'Login'}</span>
           <hr />
         </div>
-        {user && <span onClick={()=>{
+        {user && <span className="sellMenu" onClick={()=>{
           firebase.auth().signOut();
           navigate('/login')
         }}>Logout</span>}
@@ -50,7 +50,7 @@ function Header() {
           <SellButton></SellButton>
           <div className="sellMenuContent">
             <SellButtonPlus></SellButtonPlus>
-            <span>SELL</span>
+            <span onClick={()=>navigate('/create')}>SELL</span>
           </div>
         </div>
       </div>
